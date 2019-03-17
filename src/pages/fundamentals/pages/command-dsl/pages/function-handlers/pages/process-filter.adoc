@@ -1,0 +1,62 @@
+[[function-handler-process-filter]]
+= Filter
+The filter function handler sets the state of a specified parameter to a result set containing the action parameter's collection elements that match a provided SpEL predicate.
+
+== Usage
+The filter function handler is invoked by ending the command query with `"/_process?fn=_filter"`, using the preceeding path as the domain entity over which to filter. Specific implementation details can be found within `FilterFunctionHandler`.
+
+The action parameter must be a collection or array typed parameter.
+
+.Examples
+[source,java,indent=0]
+[subs="verbatim,attributes"]
+----
+@Domain(value = "sample_view", includeListeners = { ListenerType.websocket })
+@MapsTo.Type(SampleCoreEntity.class)
+@Repo(Database.rep_none)
+@Getter @Setter
+public class VRSampleViewRootEntity {
+
+    private String[] arr;
+    private List<String> simple_list;
+    private List<ComplexObject> complex_list;
+
+    @Config(url = "/arr/_process?fn=_filter&expr=contains('pickme')")
+    @Config(url = "/simple_list/_process?fn=_filter&expr=contains('pickme')")
+    @Config(url = "/complex_list/_process?fn=_filter&expr=state.p1.contains('pickme')")
+    private String action_demoFilter;
+
+    @Model 
+    @Data 
+    public static class ComplexObject {
+        private String p1;
+    }
+}
+----
+
+== Supported Query Parameters
+[cols="2,2,8"]
+|===
+| Name | Required | Description
+| expr | true | the expression to evaluate
+| targetParam | false | the param path of the param to set. If not provided, the param given by the preceeding path will be used
+|===
+
+== Filtering complex vs non-complex typed collections
+The expected SpEL predicate syntax is slightly different when the action parameter's collection element type is complex versus when it is not. Non-complex elements will simply expose each collection element's state to the SpEL expression context, while complex elements will expose the entire Param for the collection element.
+
+.Non-complex typed collection
+[source ,java]
+----
+@Config(url = "/simple_list/_process?fn=_filter&expr=contains('pickme')")
+----
+
+Since `simple_list` has type `String`, it is non-complex. Notice in this example that `expr` is making use of the `String.contains` method. This is because the state of the collection element (type `String`) is exposed as the _context_ for the SpEL expression.
+
+.Complex typed collection
+[source ,java]
+----
+@Config(url = "/complex_list/_process?fn=_filter&expr=state.p1.contains('pickme')")
+----
+
+Since `complex_list` has type `ComplexObject`, it is complex. For complex typed collections, the `Param` interface for the collection element parameter is exposed as the _context_ for the SpEL expression, which offers the ability to reference `state`. In this way greater filtering support is available for complex elements.
