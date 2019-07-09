@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.9">
+<meta name="generator" content="Asciidoctor 1.5.8">
 <meta name="description" content="Nimbus, a product of Anthem Open Source community">
 <meta name="keywords" content="Nimbus, Nimbusframework, Anthem, OSS, features">
 <title>Quick Reference</title>
@@ -433,6 +433,97 @@ body { padding-top: 60px; }
 .logo-container { line-height: 60px; }
 @media only screen and (max-width:768px) { #toc { display: none; } }
 </style>
+<style>
+/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+/*pre.CodeRay {background-color:#f7f7f8;}*/
+.CodeRay .line-numbers{border-right:1px solid #d8d8d8;padding:0 0.5em 0 .25em}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.5em;color:rgba(0,0,0,.3)}
+.CodeRay .line-numbers strong{color:rgba(0,0,0,.4)}
+table.CodeRay{border-collapse:separate;border-spacing:0;margin-bottom:0;border:0;background:none}
+table.CodeRay td{vertical-align: top;line-height:1.45}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.line-numbers>pre{padding:0;color:rgba(0,0,0,.3)}
+table.CodeRay td.code{padding:0 0 0 .5em}
+table.CodeRay td.code>pre{padding:0}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}
+</style>
 </head>
 <body id="quick-reference" class="article toc2 toc-left">
 <header id="main-header">
@@ -580,33 +671,33 @@ body { padding-top: 60px; }
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">@Domain(value = "myView", includeListeners = { ListenerType.websocket })
-@Repo(value = Repo.Database.rep_none, cache = Repo.Cache.rep_device)
-@ViewRoot(layout = "")
-@Getter @Setter
-public class VRMyView {
-    @Page(default = true)
-    private VPPage1 page1;
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Domain</span>(value = <span class="string"><span class="delimiter">&quot;</span><span class="content">myView</span><span class="delimiter">&quot;</span></span>, includeListeners = { ListenerType.websocket })
+<span class="annotation">@Repo</span>(value = Repo.Database.rep_none, cache = Repo.Cache.rep_device)
+<span class="annotation">@ViewRoot</span>(layout = <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>)
+<span class="annotation">@Getter</span> <span class="annotation">@Setter</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">VRMyView</span> {
+    <span class="annotation">@Page</span>(<span class="keyword">default</span> = <span class="predefined-constant">true</span>)
+    <span class="directive">private</span> VPPage1 page1;
 
-    @Page
-    private VPPage2 page2;
+    <span class="annotation">@Page</span>
+    <span class="directive">private</span> VPPage2 page2;
 
-    @Page
-    private VPPage3 page3;
+    <span class="annotation">@Page</span>
+    <span class="directive">private</span> VPPage3 page3;
 
-    @Model
-    @Getter @Setter
-    public static class VPPage1 { ... }
+    <span class="annotation">@Model</span>
+    <span class="annotation">@Getter</span> <span class="annotation">@Setter</span>
+    <span class="directive">public</span> <span class="directive">static</span> <span class="type">class</span> <span class="class">VPPage1</span> { ... }
 
-    /* avoid */
-    @Model
-    @Getter @Setter
-    public static class VPPage2 { ... }
+    <span class="comment">/* avoid */</span>
+    <span class="annotation">@Model</span>
+    <span class="annotation">@Getter</span> <span class="annotation">@Setter</span>
+    <span class="directive">public</span> <span class="directive">static</span> <span class="type">class</span> <span class="class">VPPage2</span> { ... }
 
-    /* avoid */
-    @Model
-    @Getter @Setter
-    public static class VPPage3 { ... }
+    <span class="comment">/* avoid */</span>
+    <span class="annotation">@Model</span>
+    <span class="annotation">@Getter</span> <span class="annotation">@Setter</span>
+    <span class="directive">public</span> <span class="directive">static</span> <span class="type">class</span> <span class="class">VPPage3</span> { ... }
 }</code></pre>
 </div>
 </div>
@@ -615,32 +706,32 @@ public class VRMyView {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">@Domain(value = "myView", includeListeners = { ListenerType.websocket })
-@Repo(value = Repo.Database.rep_none, cache = Repo.Cache.rep_device)
-@ViewRoot(layout = "")
-@Getter @Setter
-public class VRMyView {
-    @Page(default = true)
-    private VPPage1 page1;
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Domain</span>(value = <span class="string"><span class="delimiter">&quot;</span><span class="content">myView</span><span class="delimiter">&quot;</span></span>, includeListeners = { ListenerType.websocket })
+<span class="annotation">@Repo</span>(value = Repo.Database.rep_none, cache = Repo.Cache.rep_device)
+<span class="annotation">@ViewRoot</span>(layout = <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>)
+<span class="annotation">@Getter</span> <span class="annotation">@Setter</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">VRMyView</span> {
+    <span class="annotation">@Page</span>(<span class="keyword">default</span> = <span class="predefined-constant">true</span>)
+    <span class="directive">private</span> VPPage1 page1;
 
-    @Page
-    private VPPage2 page2;
+    <span class="annotation">@Page</span>
+    <span class="directive">private</span> VPPage2 page2;
 
-    @Page
-    private VPPage3 page3;
+    <span class="annotation">@Page</span>
+    <span class="directive">private</span> VPPage3 page3;
 
-    @Model
-    @Getter @Setter
-    public static class VPPage1 { ... }
+    <span class="annotation">@Model</span>
+    <span class="annotation">@Getter</span> <span class="annotation">@Setter</span>
+    <span class="directive">public</span> <span class="directive">static</span> <span class="type">class</span> <span class="class">VPPage1</span> { ... }
 }
 
-@Model
-@Getter @Setter
-public class VPPage2 { ... }
+<span class="annotation">@Model</span>
+<span class="annotation">@Getter</span> <span class="annotation">@Setter</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">VPPage2</span> { ... }
 
-@Model
-@Getter @Setter
-public class VPPage3 { ... }</code></pre>
+<span class="annotation">@Model</span>
+<span class="annotation">@Getter</span> <span class="annotation">@Setter</span>
+<span class="directive">public</span> <span class="type">class</span> <span class="class">VPPage3</span> { ... }</code></pre>
 </div>
 </div>
 </div>
@@ -685,16 +776,16 @@ public class VPPage3 { ... }</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">/* avoid */
-@ValidateConditional(when = "state == 'physical_mail'", scope = ValidationScope.CHILDREN, targetPath = "../contactInfo", targetGroup = GROUP_1.class)
-@Config(url = "&lt;!#this!&gt;/../initialized/_process?fn=_set&amp;value=true")
-@ComboBox(postEventOnChange = true)
-@Values(OwnerNotificationPreferences.class)
-@Label("Notification Preference")
-@ValidateConditional(when = "state == 'email'", scope = ValidationScope.CHILDREN, targetPath = "../contactInfo", targetGroup = GROUP_3.class)
-@NotNull
-@Path
-private String notificationPreference;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="java"><span class="comment">/* avoid */</span>
+<span class="annotation">@ValidateConditional</span>(when = <span class="string"><span class="delimiter">&quot;</span><span class="content">state == 'physical_mail'</span><span class="delimiter">&quot;</span></span>, scope = ValidationScope.CHILDREN, targetPath = <span class="string"><span class="delimiter">&quot;</span><span class="content">../contactInfo</span><span class="delimiter">&quot;</span></span>, targetGroup = GROUP_1.class)
+<span class="annotation">@Config</span>(url = <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;!#this!&gt;/../initialized/_process?fn=_set&amp;value=true</span><span class="delimiter">&quot;</span></span>)
+<span class="annotation">@ComboBox</span>(postEventOnChange = <span class="predefined-constant">true</span>)
+<span class="annotation">@Values</span>(OwnerNotificationPreferences.class)
+<span class="annotation">@Label</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">Notification Preference</span><span class="delimiter">&quot;</span></span>)
+<span class="annotation">@ValidateConditional</span>(when = <span class="string"><span class="delimiter">&quot;</span><span class="content">state == 'email'</span><span class="delimiter">&quot;</span></span>, scope = ValidationScope.CHILDREN, targetPath = <span class="string"><span class="delimiter">&quot;</span><span class="content">../contactInfo</span><span class="delimiter">&quot;</span></span>, targetGroup = GROUP_3.class)
+<span class="annotation">@NotNull</span>
+<span class="annotation">@Path</span>
+<span class="directive">private</span> <span class="predefined-type">String</span> notificationPreference;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -702,15 +793,15 @@ private String notificationPreference;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">@Label("Notification Preference")
-@NotNull
-@ComboBox(postEventOnChange = true)
-@Path
-@Values(OwnerNotificationPreferences.class)
-@ValidateConditional(when = "state == 'physical_mail'", scope = ValidationScope.CHILDREN, targetPath = "../contactInfo", targetGroup = GROUP_1.class)
-@ValidateConditional(when = "state == 'email'",         scope = ValidationScope.CHILDREN, targetPath = "../contactInfo", targetGroup = GROUP_3.class)
-@Config(url = "&lt;!#this!&gt;/../initialized/_process?fn=_set&amp;value=true")
-private String notificationPreference;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="java"><span class="annotation">@Label</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">Notification Preference</span><span class="delimiter">&quot;</span></span>)
+<span class="annotation">@NotNull</span>
+<span class="annotation">@ComboBox</span>(postEventOnChange = <span class="predefined-constant">true</span>)
+<span class="annotation">@Path</span>
+<span class="annotation">@Values</span>(OwnerNotificationPreferences.class)
+<span class="annotation">@ValidateConditional</span>(when = <span class="string"><span class="delimiter">&quot;</span><span class="content">state == 'physical_mail'</span><span class="delimiter">&quot;</span></span>, scope = ValidationScope.CHILDREN, targetPath = <span class="string"><span class="delimiter">&quot;</span><span class="content">../contactInfo</span><span class="delimiter">&quot;</span></span>, targetGroup = GROUP_1.class)
+<span class="annotation">@ValidateConditional</span>(when = <span class="string"><span class="delimiter">&quot;</span><span class="content">state == 'email'</span><span class="delimiter">&quot;</span></span>,         scope = ValidationScope.CHILDREN, targetPath = <span class="string"><span class="delimiter">&quot;</span><span class="content">../contactInfo</span><span class="delimiter">&quot;</span></span>, targetGroup = GROUP_3.class)
+<span class="annotation">@Config</span>(url = <span class="string"><span class="delimiter">&quot;</span><span class="content">&lt;!#this!&gt;/../initialized/_process?fn=_set&amp;value=true</span><span class="delimiter">&quot;</span></span>)
+<span class="directive">private</span> <span class="predefined-type">String</span> notificationPreference;</code></pre>
 </div>
 </div>
 </div>
@@ -730,9 +821,9 @@ private String notificationPreference;</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">/* avoid */
-Object gridResponse = controller.handleGet(gridDataForDocuments, null);
-Param&lt;List&lt;ActivityStatusHistory&gt;&gt; gridParam = (Param&lt;List&lt;ActivityStatusHistory&gt;&gt;) CommandExecution.MultiOutput.class.cast(Holder.class.cast(gridResponse).getState()).getOutputs().get(0).getValue();</code></pre>
+<pre class="CodeRay highlight"><code data-lang="java"><span class="comment">/* avoid */</span>
+<span class="predefined-type">Object</span> gridResponse = controller.handleGet(gridDataForDocuments, <span class="predefined-constant">null</span>);
+Param&lt;<span class="predefined-type">List</span>&lt;ActivityStatusHistory&gt;&gt; gridParam = (Param&lt;<span class="predefined-type">List</span>&lt;ActivityStatusHistory&gt;&gt;) CommandExecution.MultiOutput.class.cast(Holder.class.cast(gridResponse).getState()).getOutputs().get(<span class="integer">0</span>).getValue();</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -740,10 +831,10 @@ Param&lt;List&lt;ActivityStatusHistory&gt;&gt; gridParam = (Param&lt;List&lt;Act
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-java" data-lang="java">Object gridResponse = controller.handleGet(gridDataForDocuments, null);
-// iterate through outputs and retrieve by matching the param path with "activityStatusHistoryList".
-// @see com.antheminc.oss.nimbus.test.domain.support.utils.ParamUtils#extractResponseByParamPath(Object, String)
-Param&lt;List&lt;ActivityStatusHistory&gt;&gt; gridParam = ParamUtils.extractResponseByParamPath(gridResponse, "activityStatusHistoryList");</code></pre>
+<pre class="CodeRay highlight"><code data-lang="java"><span class="predefined-type">Object</span> gridResponse = controller.handleGet(gridDataForDocuments, <span class="predefined-constant">null</span>);
+<span class="comment">// iterate through outputs and retrieve by matching the param path with &quot;activityStatusHistoryList&quot;.</span>
+<span class="comment">// @see com.antheminc.oss.nimbus.test.domain.support.utils.ParamUtils#extractResponseByParamPath(Object, String)</span>
+Param&lt;<span class="predefined-type">List</span>&lt;ActivityStatusHistory&gt;&gt; gridParam = ParamUtils.extractResponseByParamPath(gridResponse, <span class="string"><span class="delimiter">&quot;</span><span class="content">activityStatusHistoryList</span><span class="delimiter">&quot;</span></span>);</code></pre>
 </div>
 </div>
 </div>
